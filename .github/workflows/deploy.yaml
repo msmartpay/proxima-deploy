@@ -1,0 +1,31 @@
+name: Deploy CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Docker Deployment
+      uses: wshihadeh/docker-deployment-action@v2
+      with:
+        remote_docker_host: ubuntu@65.1.91.34
+        ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
+        ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
+        deployment_mode: docker-compose
+        copy_stack_file: true
+        deploy_path: /home/ubuntu
+        stack_file_name: docker-compose.yaml
+        keep_files: 1
+#        docker_prune: true
+        pull_images_first: true
+        args: up -d

@@ -2,15 +2,17 @@ name: Deploy CI
 
 on:
   workflow_dispatch:
-  push:
-    branches: [ main ]
+#  push:
+#    branches: [ main ]
 
 jobs:
 
   deploy:
 
     runs-on: ubuntu-latest
-
+    environment:
+      name: production
+      url: 'http://msmartpay.in'
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -19,8 +21,8 @@ jobs:
       uses: wshihadeh/docker-deployment-action@v2
       with:
         remote_docker_host: ubuntu@65.1.91.34
-        ssh_private_key: ${{ secrets.DOCKER_SSH_PRIVATE_KEY }}
-        ssh_public_key: ${{ secrets.DOCKER_SSH_PUBLIC_KEY }}
+        ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+        ssh_public_key: ${{ secrets.SSH_PUBLIC_KEY }}
         deployment_mode: docker-compose
         copy_stack_file: true
         deploy_path: /home/ubuntu

@@ -1,14 +1,14 @@
 version: '2.2'
 services:
   tomcat:
-    image: docker.pkg.github.com/msmartpay/proxima-deploy/proxima:latest
+    image: ghcr.io/msmartpay/proxima:latest
     environment:
       - LOG_LEVEL=info
     ports:
       - 8081:8080/tcp
     network_mode: bridge
   nginx:
-    image: docker.pkg.github.com/msmartpay/proxima-deploy/nginx:latest
+    image: ghcr.io/msmartpay/proxima-nginx:latest
     sysctls:
       - net.ipv6.conf.all.disable_ipv6=0
       - net.ipv6.conf.all.forwarding=1

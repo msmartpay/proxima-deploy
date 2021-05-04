@@ -1,1 +1,1 @@
-Reposirtoy containing scripts and yamls related to deployment of "msmartpay.in"
+Repository containing scripts and yamls related to deployment of "msmartpay.in"

@@ -6,6 +6,8 @@ services:
       - LOG_LEVEL=info
     ports:
       - 8081:8080/tcp
+    volumes:
+      - ./ssl/msmartpay.in/bank:/root/ssl/bank/
     network_mode: bridge
   nginx:
     image: ghcr.io/msmartpay/proxima-nginx:latest
